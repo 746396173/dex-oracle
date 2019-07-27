@@ -1,0 +1,1 @@
+java -jar D:\Tools\Android\baksmali-2.2.7.jar %*

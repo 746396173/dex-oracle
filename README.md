@@ -136,3 +136,7 @@ It's possible that a plugin sees a pattern it thinks is obfuscation but is actua
 
 1. [TetCon 2016 - Android Deobfuscation](https://www.slideshare.net/tekproxy/tetcon-2016/)
 2. [Hacking with dex-oracle for Android Malware Deobfuscation](https://rednaga.io/2017/10/28/hacking-with-dex-oracle-for-android-malware-deobfuscation/)
+
+## Patch
+
+The patch folder mainly fix the environment problem.
