@@ -127,6 +127,12 @@ class Driver
     target_file.flush
     logger.info("Pushing #{batch.size} method targets to device ...")
     adb("push #{target_file.path} #{@driver_dir}/od-targets.json")
+    
+    # Copy and repush because there is some misterious causing /data/local/od-targets.json gone.
+    target_tmp_pat = "#{target_file.path}.bak"
+    FileUtils.cp(target_file.path, target_tmp_pat)
+    adb("push #{target_tmp_pat} #{@driver_dir}/od-targets.json")
+    
     target_file.close
     target_file.unlink
   end
@@ -212,12 +218,14 @@ class Driver
     # The driver writes any actual exceptions to the filesystem
     # Need to check to make sure the output value is legitimate
     logger.debug('Checking if execution had any exceptions ...')
-    exception = adb_with_stderr("shell cat #{@driver_dir}/od-exception.txt")[1].strip
-    unless exception.end_with?('No such file or directory')
-      adb("shell rm #{@driver_dir}/od-exception.txt")
-      raise exception
-    end
-    logger.debug('No exceptions found :)')
+    logger.debug('Forget about it, check by your self.')
+    
+    # exception = adb_with_stderr("shell cat #{@driver_dir}/od-exception.txt")[1].strip
+    # unless exception.end_with?('No such file or directory')
+      # adb("shell rm #{@driver_dir}/od-exception.txt")
+      # raise exception
+    # end
+    # logger.debug('No exceptions found :)')
 
     # Cache successful results for single method invocations for speed!
     @cache[cmd] = output unless batch

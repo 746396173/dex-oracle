@@ -72,10 +72,12 @@ public class TargetParser {
             for (int i = 0; i < arguments.length; i++) {
                 arguments[i] = argumentsJson.get(i).getAsString();
             }
-
-            InvocationTarget target = new InvocationTarget(id, className, methodName, arguments);
-            parseTargetExceptionally(gson, target);
-            targets.add(target);
+            
+            try {
+                InvocationTarget target = new InvocationTarget(id, className, methodName, arguments);
+                parseTargetExceptionally(gson, target);
+                targets.add(target);
+            } catch(Throwable t){}
         }
 
         return targets;
