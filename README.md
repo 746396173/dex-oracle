@@ -139,5 +139,5 @@ It's possible that a plugin sees a pattern it thinks is obfuscation but is actua
 
 ## This Fork Patch
 
-1.Add Script for windows in patch folder.
-2.Fix some go-die easily problem in actual running.
+1.Add Script for windows in patch folder.<br/>
+2.Fix some go-die easily problem in actual running.<br/>
